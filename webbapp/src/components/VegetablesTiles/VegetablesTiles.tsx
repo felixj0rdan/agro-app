@@ -15,12 +15,13 @@ interface Vegetable {
 
 const VegetablesMain = styled.div`
     display: flex;
-    margin-top: 30px;
+    margin-top: 25px;
+    margin-bottom: 25px;
     flex-wrap: wrap;
     justify-content: center;
+    width: 100%;
     /* align-items: center; */
     /* position: absolute;
-    width: 100%;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%); */

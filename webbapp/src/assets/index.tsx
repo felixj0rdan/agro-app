@@ -2,6 +2,9 @@ import farmer from "./icons/farmer.png";
 import consumer from "./icons/consumer.png";
 import wholesale from "./icons/wholesale.png";
 import retailer from "./icons/retailer.png";
+import show from "./icons/view.png";
+import hide from "./icons/hide.png";
+
 
 import tomatoI from "./icons/tomato.png";
 import onion from "./icons/onion.png";
@@ -101,5 +104,7 @@ export {
     consumer,
     wholesale,
     retailer,
-    Vegetables
+    Vegetables,
+    show,
+    hide,
 }

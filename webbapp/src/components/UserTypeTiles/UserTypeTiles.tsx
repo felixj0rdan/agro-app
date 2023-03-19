@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { consumer, farmer, retailer, userTypes, wholesale } from '../../assets'
 
-const LandingDiv = styled.div`
+const UserTypeMain = styled.div`
     width: 100%;
     display: flex;
     /* flex: 10 0 50%; */
@@ -43,7 +43,7 @@ const UserTypeTiles = ({setUserType} : any) => {
     // const userTypeName = ["Farmer", "Consumer", "Retailer", "WholeSale Dealer"]
 
   return (
-    <LandingDiv>
+    <UserTypeMain>
 
         {
             userTypes.map((userT, index) =>
@@ -75,7 +75,7 @@ const UserTypeTiles = ({setUserType} : any) => {
             </div>
 
         </UserCard> */}
-    </LandingDiv>
+    </UserTypeMain>
   )
 }
 
