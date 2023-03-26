@@ -38,7 +38,7 @@ const UserType = styled.p<{size:any}>`
     line-height: 22px;
 `
 
-const UserTypeTiles = ({setUserType} : any) => {
+const UserTypeTiles = ({setUserType, language} : any) => {
 
     // const userTypeName = ["Farmer", "Consumer", "Retailer", "WholeSale Dealer"]
 
@@ -47,9 +47,9 @@ const UserTypeTiles = ({setUserType} : any) => {
 
         {
             userTypes.map((userT, index) =>
-            <UserCard key={index} onClick={() => setUserType(userT.name)} >
+            <UserCard key={index} onClick={() => setUserType(userT.english)} >
                 <img height={"75px"} src={userT.img} />
-                <UserType size={"20px"} >{userT.name}</UserType>
+                <UserType size={"20px"} >{userT[language]}</UserType>
             </UserCard> )
         }
 

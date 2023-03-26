@@ -40,7 +40,7 @@ const Bottombar = ({navigate, isAdminPage} : any) => {
   return (
     <MainDiv>
         <Button onClick={Goto} >
-            { isAdminPage ? "Go Back" : "Admin Login"}
+            { isAdminPage ? "Go Back" : "Admin"}
         </Button>
     </MainDiv>
   )

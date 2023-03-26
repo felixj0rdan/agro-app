@@ -24,6 +24,13 @@ interface Vegetable {
     img: string
 }
 
+interface UserType {
+    [key:string]:string,
+    english: string,
+    tamil: string,
+    img: string
+}
+
 const Vegetables: Vegetable[] = [
     {
         english: "Tomoto",
@@ -78,22 +85,26 @@ const Vegetables: Vegetable[] = [
 ]
 
 
-export const userTypes = [
+export const userTypes : UserType[] = [
     {
         img:farmer,
-        name:"Farmer"
+        english:"Farmer",
+        tamil: "உழவர்"
     }, 
     {
         img:consumer,
-        name:"Consumer"
+        english:"Consumer",
+        tamil: "நுகர்வோர்"
     }, 
     {
         img:retailer,
-        name:"Retailer"
+        english:"Retailer",
+        tamil: "சில்லறை விற்பனையாளர்"
     }, 
     {
         img:wholesale,
-        name:"Wholesale Dealer"
+        english:"Wholesale Dealer",
+        tamil: "மொத்த வியாபாரி"
     }
 ] 
 

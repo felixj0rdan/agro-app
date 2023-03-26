@@ -62,7 +62,7 @@ const Landing = () => {
         <Navbar setLanguage={setLanguage} />
             <LandingDiv>
                 {/* <div> */}
-                    { userType === "" && market === "" && vegetable === "" && <UserTypeTiles setUserType={setUserType} />}
+                    { userType === "" && market === "" && vegetable === "" && <UserTypeTiles language = {language} setUserType={setUserType} />}
                     { userType !== "" && market === "" && vegetable === "" && <MarketTiles setMarket={setMarket} />}
                     { userType !== "" && market !== "" && vegetable === "" && <VegetablesTiles language = {language} setVegetable={setVegetable} />}
                 {/* </div> */}
