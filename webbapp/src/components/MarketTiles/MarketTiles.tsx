@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
+import { markets } from '../../assets'
 
 const MarketDiv = styled.div`
     width: 100%;
@@ -32,15 +33,24 @@ const Text = styled.p`
     /* text-align: center; */
 `
 
-const MarketTiles = ({setMarket} : any) => {
+const BackButton = styled.button`
+    border: 0px;
+    padding: 5px;
+    font-size: larger;
+    width: 100px;
+    border-radius: 20px;
+`
 
-    const [markets, setMarkets] = useState(["Vellore Tolgate", "Katpadi", "Gudiyattam", "Kagithapattrai", "Chennai Koyambedu"]);
+const MarketTiles = ({setMarket, language, setUserType} : any) => {
+
+    // const [markets, setMarkets] = useState(["Vellore Tolgate", "Katpadi", "Gudiyattam", "Kagithapattrai", "Chennai Koyambedu"]);
 
 
   return (
     <MarketDiv>
+        <BackButton onClick={() => setUserType("")} >Back</BackButton>
         {
-            markets.map((market, index) => <MarketTile key={index} onClick={() => setMarket(market)} ><Text>{market}</Text></MarketTile>)
+            markets.map((market, index) => <MarketTile key={index} onClick={() => setMarket(market)} ><Text>{market[language]}</Text></MarketTile>)
         }
 
     </MarketDiv>

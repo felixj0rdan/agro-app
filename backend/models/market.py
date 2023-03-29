@@ -5,7 +5,7 @@ import requests
 
 
 class MarketModel(db.Model):
-    __tablename__ = "vegetables"
+    __tablename__ = "markets"
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(200))

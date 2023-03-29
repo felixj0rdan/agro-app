@@ -6,10 +6,25 @@ const UserTypeMain = styled.div`
     width: 100%;
     display: flex;
     /* flex: 10 0 50%; */
+    /* flex-wrap: wrap; */
+    gap: 40px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+`
+
+const UserTypeGrid = styled.div`
+    width: 100%;
+    display: flex;
+    flex: 50 0 50%;
     flex-wrap: wrap;
     gap: 20px;
     justify-content: center;
-    /* align-items: center; */
+    align-items: center;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -38,12 +53,15 @@ const UserType = styled.p<{size:any}>`
     line-height: 22px;
 `
 
+
+
 const UserTypeTiles = ({setUserType, language} : any) => {
 
     // const userTypeName = ["Farmer", "Consumer", "Retailer", "WholeSale Dealer"]
 
   return (
-    <UserTypeMain>
+    // <UserTypeMain>
+        <UserTypeGrid>
 
         {
             userTypes.map((userT, index) =>
@@ -52,30 +70,11 @@ const UserTypeTiles = ({setUserType, language} : any) => {
                 <UserType size={"20px"} >{userT[language]}</UserType>
             </UserCard> )
         }
+        </UserTypeGrid>
 
 
-        {/* <UserCard>
-            <img height={"75px"} src={farmer} />
-            <UserType size={"20px"} >Farmer</UserType>
-        </UserCard>
-        <UserCard>
-            <img height={"75px"} src={consumer} />
-            <UserType size={"20px"} >Consumer</UserType>
-
-        </UserCard>
-        <UserCard>
-            <img height={"75px"} src={retailer} />
-            <UserType size={"20px"} >Retailer</UserType>
-
-        </UserCard>
-        <UserCard>
-            <img height={"75px"} src={wholesale} />
-            <div>
-                <UserType size={"20px"} >Wholesale Dealer</UserType>
-            </div>
-
-        </UserCard> */}
-    </UserTypeMain>
+        
+    // </UserTypeMain>
   )
 }
 

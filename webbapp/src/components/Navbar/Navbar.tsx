@@ -33,7 +33,7 @@ const Select = styled.select`
     }
 `
 
-const Navbar = ({setLanguage, isAdminPage}: any ) => {
+const Navbar = ({language, setLanguage, isAdminPage}: any ) => {
   return (
     <NavDiv>
         <Title>AgroApp</Title>
@@ -45,4 +45,5 @@ const Navbar = ({setLanguage, isAdminPage}: any ) => {
   )
 }
 
+// { language === "english" ?"AgroApp":"நிர்வாகி"}
 export default Navbar

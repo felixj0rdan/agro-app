@@ -2,14 +2,13 @@ from enum import unique
 from db import db
 import datetime
 import requests
-
+import bson
 
 class AdminsModel(db.Model):
     __tablename__ = "admins"
 
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.String(200), primary_key=True)
     name = db.Column(db.String(200))
-    # phonenumber = db.Column(db.String(200), unique=True)
     username = db.Column(db.String(200), unique=True)
     email = db.Column(db.String(200), unique=True)
     active = db.Column(db.Boolean, default=True)
@@ -19,6 +18,7 @@ class AdminsModel(db.Model):
 
     def __init__(self, name, username):
 
+        self.id = str(bson.objectid.ObjectId())
         self.name = name
         self.username = username
         # self.phonenumber = phonenumber

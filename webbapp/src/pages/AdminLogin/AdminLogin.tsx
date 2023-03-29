@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import { hide, show } from '../../assets'
-import { Navbar } from '../../components'
-import Bottombar from '../../components/Bottombar/Bottombar'
+import { Bottombar, Navbar } from '../../components'
+// import Bottombar from '../../components/Bottombar/Bottombar'
 import { Login } from '../../helper'
 
 const AdminLoginMain = styled.div`
@@ -94,7 +94,7 @@ const AdminLogin = () => {
 
 
     useEffect(() => {
-      if(username == "" || password == ""){
+      if(username === "" || password === ""){
         setLoginEnabled(false)
       } else {
         setLoginEnabled(true)
@@ -109,6 +109,9 @@ const AdminLogin = () => {
         .then(data => {
             localStorage.setItem("access_token", data.access_token);
             localStorage.setItem("refresh_token", data.refresh_token);
+            console.log(data);
+            
+            navigate("/dashboard")
         })
         .catch(err => console.log(err))
     }

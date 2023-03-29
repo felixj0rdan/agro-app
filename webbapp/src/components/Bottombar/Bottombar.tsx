@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 
 const MainDiv = styled.div`
@@ -19,7 +19,7 @@ const Button = styled.button`
     background-color: white;
     border: none;
     border-radius: 5px;
-    padding: 5px;
+    padding: 8px;
     /* margin: 15px; */
     &:focus{
         outline: none;
@@ -28,8 +28,13 @@ const Button = styled.button`
 
 const Bottombar = ({navigate, isAdminPage} : any) => {
 
+    const [token, setToken] = useState(localStorage.getItem("access_token"))
 
     const Goto = () => {
+        if(token !== ""){
+            localStorage.removeItem("access_token");
+            localStorage.removeItem("refresh_token");
+        }
         if(isAdminPage){
             navigate("/")
         } else {
@@ -40,7 +45,7 @@ const Bottombar = ({navigate, isAdminPage} : any) => {
   return (
     <MainDiv>
         <Button onClick={Goto} >
-            { isAdminPage ? "Go Back" : "Admin"}
+            { isAdminPage ? "Go Back" : token ? "Logout" :"Admin"}
         </Button>
     </MainDiv>
   )

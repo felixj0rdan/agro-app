@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import { consumer, farmer, retailer, wholesale } from '../../assets'
-import { Navbar, UserTypeTiles, VegetablesTiles } from '../../components'
-import Bottombar from '../../components/Bottombar/Bottombar'
-import MarketTiles from '../../components/MarketTiles/MarketTiles'
+import { Bottombar, MarketTiles, Navbar, UserTypeTiles, VegetablesTiles } from '../../components'
+// import Bottombar from '../../components/Bottombar/Bottombar'
+// import MarketTiles from '../../components/MarketTiles/MarketTiles'
 
 const LandingDiv = styled.div`
     width: 100%;
@@ -53,18 +53,28 @@ const Landing = () => {
 
     const [language, setLanguage] = useState("english")
 
-    console.log(userType+" "+market+" "+vegetable);
+    // console.log(userType+" "+market+" "+vegetable);
+
+    useEffect(() => {
+      if(userType === "" || market === "" || vegetable === "" ){
+        return;
+      }
+
+      
+
+    }, [vegetable])
+    
     
 
 
   return (
     <>
-        <Navbar setLanguage={setLanguage} />
+        <Navbar language={language} setLanguage={setLanguage} />
             <LandingDiv>
                 {/* <div> */}
                     { userType === "" && market === "" && vegetable === "" && <UserTypeTiles language = {language} setUserType={setUserType} />}
-                    { userType !== "" && market === "" && vegetable === "" && <MarketTiles setMarket={setMarket} />}
-                    { userType !== "" && market !== "" && vegetable === "" && <VegetablesTiles language = {language} setVegetable={setVegetable} />}
+                    { userType !== "" && market === "" && vegetable === "" && <MarketTiles language = {language} setUserType={setUserType} setMarket={setMarket} />}
+                    { userType !== "" && market !== "" && vegetable === "" && <VegetablesTiles setMartket={setMarket} language = {language} setVegetable={setVegetable} />}
                 {/* </div> */}
             </LandingDiv>
         <Bottombar navigate={navigate} />

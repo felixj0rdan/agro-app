@@ -5,6 +5,8 @@ from flask_jwt_extended import (
     fresh_jwt_required,
 )
 from flask import request
+import datetime
+
 
 from models.dailyprice import DailyPriceModel
 from models.admin import AdminsModel
@@ -25,6 +27,9 @@ class AddDailyPrice(Resource):
             "retailPrice", type=float, required=True, help="This field cannot be blank."
         )
         parser.add_argument(
+            "dateTime", type=str, required=True, help="This field cannot be blank."
+        )
+        parser.add_argument(
             "farmerMarketPrice",
             type=float,
             required=True,
@@ -41,13 +46,19 @@ class AddDailyPrice(Resource):
 
         admin = AdminsModel.find_by_id(get_jwt_identity())
 
-        data["adminName"] = admin.name
+        # dailyPrice = 
+
+        if(DailyPriceModel.find_by_datetime(datetime.datetime.strptime(data["dateTime"], "%Y-%m-%d"))):
+
+            return {"message": "Already entered for the given date."}, 400
+
+        data["adminId"] = admin.id
 
         dailyPrice = DailyPriceModel(**data)
 
         dailyPrice.save_to_db()
 
-        return dailyPrice.json()
+        return {"message": "Success", "dailyPrice": dailyPrice.json()}, 200
 
 
 class AllDailyPrice(Resource):
