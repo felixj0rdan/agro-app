@@ -59,7 +59,7 @@ class DailyPriceModel(db.Model):
             "farmerMarketPrice": self.farmerMarketPrice,
             "retailPrice": self.retailPrice,
             "wholesalePrice": self.wholesalePrice,
-            "dateTime": str(self.dateTime),
+            "dateTime": str(self.dateTime).split(" ")[0],
         }
 
     @classmethod

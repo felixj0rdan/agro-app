@@ -4,6 +4,9 @@ import wholesale from "./icons/wholesale.png";
 import retailer from "./icons/retailer.png";
 import show from "./icons/view.png";
 import hide from "./icons/hide.png";
+import left from "./icons/left.png";
+import right from "./icons/right.png";
+
 
 
 import tomatoI from "./icons/tomato.png";
@@ -17,27 +20,27 @@ import cabbage from "./icons/cabbage.png";
 import taro from "./icons/taro.png";
 
 
-interface Vegetable {
+export interface VegetableType {
     [key:string]:string,
     english: string,
     tamil: string,
     img: string
 }
 
-interface UserType {
+export interface UserType {
     [key:string]:string,
     english: string,
     tamil: string,
     img: string
 }
 
-interface MarketType {
+export interface MarketType {
     [key:string]:string,
     english: string,
     tamil: string,
 }
 
-const Vegetables: Vegetable[] = [
+const Vegetables: VegetableType[] = [
     {
         id: "001",
         english: "Tomoto",
@@ -168,4 +171,6 @@ export {
     Vegetables,
     show,
     hide,
+    left,
+    right,
 }

@@ -15,6 +15,9 @@ const MainDiv = styled.div`
 
 const DatePicker = styled.input`
 `
+const DateDiv = styled.div`
+    
+`
 
 const PriceInput = styled.input`
     width: 100px;
@@ -37,9 +40,6 @@ const SubmitBtn = styled.button`
     
 `
 
-const DateDiv = styled.div`
-    
-`
 
 const DateDisplay = styled.p`
     margin: 0px;
@@ -59,6 +59,7 @@ declare global {
 const DailyPriceForm = ({vegetable, market} : any) => {
 
     const [date, setDate] = useState<Date>(new Date());
+    const [d, setD] = useState("")
     const [datePickerVisible, setDatePickerVisible] = useState(false)
     const $dateInput = $("#dateInput");
     $dateInput.datepicker();
@@ -75,13 +76,13 @@ const DailyPriceForm = ({vegetable, market} : any) => {
     useEffect(() => {
     //   let d = new Date(date);
     //   d.setDate(d.getDate() - 21)
-      console.log(date.toLocaleDateString("en-US", {
-          day: "2-digit", 
-          month: "numeric", 
-          year: "numeric",
-        }).split('/').reverse().join('-'));
+    //   console.log(date.toLocaleDateString("en-US", {
+    //       day: "2-digit", 
+    //       month: "numeric", 
+    //       year: "numeric",
+    //     }).split('/').reverse().join('-'));
 
-      console.log(date.toLocaleDateString());
+    //   console.log(date.toLocaleDateString());
       
       
 
@@ -94,13 +95,13 @@ const DailyPriceForm = ({vegetable, market} : any) => {
             retailPrice: retailPrice,
             farmerMarketPrice: farmerPrice,
             wholesalePrice: wholesalePrice,
-            dateTime: date
+            dateTime: d
         }
 
         console.log(data);
 
-        // AddDailyPrice(data)
-        // .then(res => console.log(res))
+        AddDailyPrice(data)
+        .then(res => console.log(res))
         
     }
 
@@ -119,7 +120,7 @@ const DailyPriceForm = ({vegetable, market} : any) => {
             <DateDiv  >
                 {/* <DayDisplay>{days[date.getDay()]}</DayDisplay>
                 <DateDisplay>{date.getDate()+" "+months[date.getMonth()]+" "+date.getFullYear()}</DateDisplay> */}
-                <DatePicker onChange={(e) => setDate(new Date(e.target.value))} type="date"  />
+                <DatePicker onChange={(e) => {setDate(new Date(e.target.value)); setD(e.target.value)}} type="date"  />
             </DateDiv>
             <PriceMainDiv>
                 <PriceDiv>

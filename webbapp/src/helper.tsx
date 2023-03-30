@@ -17,3 +17,8 @@ export const AddDailyPrice = async (data : any) => {
     })
     return res.data;
 }
+
+export const GetDailyPrice = async () => {
+    let response = await axios.get(`${URL}all-dailyprice`)
+    return response.data.dailyprices;
+}

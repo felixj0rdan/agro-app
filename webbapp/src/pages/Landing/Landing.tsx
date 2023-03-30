@@ -1,10 +1,23 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
-import { consumer, farmer, retailer, wholesale } from '../../assets'
-import { Bottombar, MarketTiles, Navbar, UserTypeTiles, VegetablesTiles } from '../../components'
+import { consumer, farmer, MarketType, retailer, UserType, VegetableType, wholesale } from '../../assets'
+import { Bottombar, DailyPrice, MarketTiles, Navbar, UserTypeTiles, VegetablesTiles } from '../../components'
+import { GetDailyPrice } from '../../helper'
 // import Bottombar from '../../components/Bottombar/Bottombar'
 // import MarketTiles from '../../components/MarketTiles/MarketTiles'
+
+interface DailyPriceProp {
+    id: string,
+    marketName: string,
+    vegetableName: string,
+    adminId: string,
+    adminUsername: string,
+    farmerMarketPrice: number,
+    retailPrice: number,
+    wholesalePrice: number,
+    dateTime: string
+}
 
 const LandingDiv = styled.div`
     width: 100%;
@@ -22,47 +35,44 @@ const LandingDiv = styled.div`
     transform: translate(-50%, -50%); */
 `
 
-const UserCard = styled.div`
-    height: 150px;
-    width: 150px;
-    /* flex-direction: row; */
-    border-radius: 10px;
-    background-color: #4e4ef5;
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 10px;
 
-`
-
-const UserType = styled.p<{size:any}>`
-    color: white;
-    margin: 0px;
-    font-size: ${props => props.size};
-    text-align: center;
-`
 
 const Landing = () => {
 
     const navigate = useNavigate();
 
-    const [userType, setUserType] = useState("")
-    const [market, setMarket] = useState("")
-    const [vegetable, setVegetable] = useState("")
+    const [userType, setUserType] = useState<UserType>()
+    const [market, setMarket] = useState<MarketType>()
+    const [vegetable, setVegetable] = useState<VegetableType>()
 
     const [language, setLanguage] = useState("english")
+
+    const [data, setData] = useState<DailyPriceProp[]>([])
 
     // console.log(userType+" "+market+" "+vegetable);
 
     useEffect(() => {
-      if(userType === "" || market === "" || vegetable === "" ){
-        return;
-      }
-
-      
+    //   if(userType === "" || market === "" || vegetable === "" ){
+    //     return;
+    //   }
 
     }, [vegetable])
+
+    useEffect(() => {
+        getDailyPrices();
+    }, [])
+
+    // console.log(vegetable, market);
+    
+
+
+    const getDailyPrices = async () => {
+        setData(await GetDailyPrice());
+    }
+
+    // console.log(data);
+    
+    
     
     
 
@@ -72,10 +82,11 @@ const Landing = () => {
         <Navbar language={language} setLanguage={setLanguage} />
             <LandingDiv>
                 {/* <div> */}
-                    { userType === "" && market === "" && vegetable === "" && <UserTypeTiles language = {language} setUserType={setUserType} />}
-                    { userType !== "" && market === "" && vegetable === "" && <MarketTiles language = {language} setUserType={setUserType} setMarket={setMarket} />}
-                    { userType !== "" && market !== "" && vegetable === "" && <VegetablesTiles setMartket={setMarket} language = {language} setVegetable={setVegetable} />}
+                    { userType === undefined && market === undefined && vegetable === undefined && <UserTypeTiles language = {language} setUserType={setUserType} />}
+                    { userType !== undefined && market === undefined && vegetable === undefined && <MarketTiles language = {language} setUserType={setUserType} setMarket={setMarket} />}
+                    { userType !== undefined && market !== undefined && vegetable === undefined && <VegetablesTiles setMartket={setMarket} language = {language} setVegetable={setVegetable} />}
                 {/* </div> */}
+                {userType !== undefined && market !== undefined && vegetable !== undefined && <DailyPrice vegetableData={data.filter(d => (d.marketName === market?.id && d.vegetableName == vegetable.id) )} /> }
             </LandingDiv>
         <Bottombar navigate={navigate} />
     </>

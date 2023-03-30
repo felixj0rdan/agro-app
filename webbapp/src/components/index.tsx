@@ -4,6 +4,7 @@ import Navbar from "./Navbar/Navbar";
 import UserTypeTiles from "./UserTypeTiles/UserTypeTiles";
 import VegetablesTiles from "./VegetablesTiles/VegetablesTiles";
 import DailyPriceForm from "./DailyPriceForm/DailyPriceForm";
+import DailyPrice from "./DailyPrice/DailyPrice";
 
 
 export {
@@ -13,4 +14,5 @@ export {
     MarketTiles,
     Bottombar,
     DailyPriceForm,
+    DailyPrice,
 }
