@@ -4,7 +4,7 @@ from flask_jwt_extended import (
     get_jwt_identity,
     fresh_jwt_required,
 )
-from flask import request
+from flask import request, send_from_directory
 import datetime
 
 
@@ -46,9 +46,11 @@ class AddDailyPrice(Resource):
 
         admin = AdminsModel.find_by_id(get_jwt_identity())
 
-        # dailyPrice = 
+        # dailyPrice =
 
-        if(DailyPriceModel.find_by_datetime(datetime.datetime.strptime(data["dateTime"], "%Y-%m-%d"))):
+        if DailyPriceModel.find_by_datetime(
+            datetime.datetime.strptime(data["dateTime"], "%Y-%m-%d")
+        ):
 
             return {"message": "Already entered for the given date."}, 400
 
@@ -71,3 +73,12 @@ class AllDailyPrice(Resource):
 
     # except:
     #     return {"message": "Error"}, 500
+
+
+class GetData(Resource):
+    def get(self):
+        # print(path)
+        try:
+            return send_from_directory("assets", path="data.csv")
+        except FileNotFoundError:
+            return {"message": "File not Found"}, 404

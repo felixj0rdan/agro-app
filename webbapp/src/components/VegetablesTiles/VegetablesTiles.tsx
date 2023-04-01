@@ -1,6 +1,6 @@
 import React, { Dispatch, useState } from 'react'
 import styled from 'styled-components'
-import { Vegetables } from '../../assets'
+import { back, Vegetables } from '../../assets'
 
 interface VegetablesTilesProps {
     language: string,
@@ -76,7 +76,10 @@ const VegetablesTiles = ({language, setVegetable, setMartket} : any ) => {
 
   return (
     <VegetablesMain>
-        <BackButton onClick={() => setMartket("")} >Back</BackButton>
+        <BackButton onClick={() => setMartket(undefined)} >
+            
+            <img src={back} height="35px" alt="" />
+        </BackButton>
         <VegetablesGrid>
 
         {Vegetables.map((vegetable, index) => <VegetableCard key={index} onClick={() => setVegetable(vegetable)} > <img height={"60px"} width={"60px"} src={vegetable?.img} alt="" /> <Text>{vegetable[language]}</Text></VegetableCard>)}

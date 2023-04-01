@@ -33,7 +33,8 @@ const UserTypeGrid = styled.div`
 
 const UserCard = styled.div`
     height: 150px;
-    width: 150px;
+    /* width: 150px; */
+    width: 40%;
     /* flex-direction: row; */
     border-radius: 10px;
     background-color: #4e4ef5;

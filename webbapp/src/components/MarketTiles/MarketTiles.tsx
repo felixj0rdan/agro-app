@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { markets } from '../../assets'
+import { back, markets } from '../../assets'
 
 const MarketDiv = styled.div`
     width: 100%;
@@ -48,7 +48,9 @@ const MarketTiles = ({setMarket, language, setUserType} : any) => {
 
   return (
     <MarketDiv>
-        <BackButton onClick={() => setUserType("")} >Back</BackButton>
+        <BackButton onClick={() => setUserType(undefined)} >
+            <img src={back} height="35px" alt="" />
+        </BackButton>
         {
             markets.map((market, index) => <MarketTile key={index} onClick={() => setMarket(market)} ><Text>{market[language]}</Text></MarketTile>)
         }

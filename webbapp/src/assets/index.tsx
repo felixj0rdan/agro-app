@@ -6,7 +6,7 @@ import show from "./icons/view.png";
 import hide from "./icons/hide.png";
 import left from "./icons/left.png";
 import right from "./icons/right.png";
-
+import back from "./icons/back.png"
 
 
 import tomatoI from "./icons/tomato.png";
@@ -156,7 +156,7 @@ export const userTypes : UserType[] = [
     {
         id: "004",
         img:wholesale,
-        english:"Wholesale Dealer",
+        english:"Wholesaler",
         tamil: "மொத்த வியாபாரி"
     }
 ] 
@@ -173,4 +173,5 @@ export {
     hide,
     left,
     right,
+    back
 }

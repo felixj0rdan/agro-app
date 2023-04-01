@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { left, right } from '../../assets'
+import Graph from '../Graph/Graph'
 
 interface DailyPriceProp {
     id: string,
@@ -25,7 +26,7 @@ const MainDiv = styled.div`
     align-items: center;
     position: absolute;
     gap: 50px;
-    top: 30%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 
@@ -65,10 +66,10 @@ const DateBtn = styled.div`
 const DailyPrice = ({ vegetableData }:DailyPriceInterface) => {
 
     const [date, setDate] = useState(new Date().toLocaleDateString("en-CA", {
-        month: "2-digit", 
         day: "2-digit", 
+        month: "2-digit",
         year: "numeric",
-    }))
+    }).split("/").reverse().join("-"))
 
     const [dateCounter, setDateCounter] = useState(1)
 
@@ -77,33 +78,23 @@ const DailyPrice = ({ vegetableData }:DailyPriceInterface) => {
     useEffect(() => {
       setDailyPrice(vegetableData.filter(data => data.dateTime === date)[0])
     }, [date])
-
-    // console.log(date);
     
     const changeDate = (val:number) => {
         let d = new Date(date);
         d.setDate(d.getDate() + val)
         setDate(d.toLocaleDateString("en-CA", {
-            month: "2-digit", 
             day: "2-digit", 
+            month: "2-digit", 
             year: "numeric",
-        }));
-        setDateCounter(d => d+1);
+        }).split("/").reverse().join("-"));
     }
     
-
-    // console.log(vegetableData);
-    
-
     return (
         <MainDiv>
             <DateDiv  >
-            {/* <DayDisplay>{days[date.getDay()]}</DayDisplay>
-            <DateDisplay>{date.getDate()+" "+months[date.getMonth()]+" "+date.getFullYear()}</DateDisplay> */}
                 <DateBtn onClick={() => changeDate(-1)} ><img src={left} height="30px" alt="" /></DateBtn>
-                <DatePicker value={date} onChange={(e) => {setDate(e.target.value)}} type="date"  />
+                    <DatePicker value={date} onChange={(e) => {setDate(e.target.value)}} type="date"/>
                 <DateBtn onClick={() => changeDate(1)} ><img src={right} height="30px" alt="" /></DateBtn>
-
             </DateDiv>
             <PriceMainDiv>
                 <PriceDiv>
@@ -119,6 +110,7 @@ const DailyPrice = ({ vegetableData }:DailyPriceInterface) => {
                     <PriceLabel>Wholesale</PriceLabel>
                 </PriceDiv>
             </PriceMainDiv>
+            <Graph />
         </MainDiv>
     )
 }

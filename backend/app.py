@@ -10,7 +10,7 @@ from blacklist import BLACKLIST
 # from resources.users import AddUser, GetUserByRegNo
 # from resources.invoice import CreateInvoice, GetAllInvoices, ChangeInvoiceStatus
 from resources.admin import NewAdmin, AdminLogin, AdminTokenRefresh, AdminLogout
-from resources.dailyprice import AddDailyPrice, AllDailyPrice
+from resources.dailyprice import AddDailyPrice, AllDailyPrice, GetData
 
 app = Flask(__name__)
 CORS(app)
@@ -113,6 +113,7 @@ api.add_resource(AdminTokenRefresh, "/admin/refresh-token")
 
 api.add_resource(AddDailyPrice, "/add-dailyprice")
 api.add_resource(AllDailyPrice, "/all-dailyprice")
+api.add_resource(GetData, "/data")
 
 
 # api.add_resource(AddUser, "/add-user")
