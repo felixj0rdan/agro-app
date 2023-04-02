@@ -6,6 +6,7 @@ import bson
 
 from models.admin import AdminsModel
 
+
 class DailyPriceModel(db.Model):
     __tablename__ = "dailyprice"
 
@@ -45,10 +46,9 @@ class DailyPriceModel(db.Model):
         adminId = ""
         adminUsername = ""
 
-        if(admin != None):
+        if admin != None:
             adminId = admin.id
             adminUsername = admin.username
-        
 
         return {
             "id": self.id,
@@ -75,8 +75,10 @@ class DailyPriceModel(db.Model):
         return cls.query.filter_by(name=name).first()
 
     @classmethod
-    def find_by_datetime(cls, dateTime):
-        return cls.query.filter_by(dateTime=dateTime).first()
+    def find_by_datetime_market_vegetable(cls, dateTime, vegetable, market):
+        return cls.query.filter_by(
+            dateTime=dateTime, vegetableName=vegetable, marketName=market
+        ).first()
 
     # @classmethod
     # def find_by_phonenumber(cls, phonenumber):
@@ -97,3 +99,14 @@ class DailyPriceModel(db.Model):
     def delete_from_db(self):
         db.session.delete(self)
         db.session.commit()
+
+
+# adminId: "6425bd8886683e56a8d6c04a"
+# adminUsername: "admin"
+# dateTime: "2023-03-29"
+# farmerMarketPrice: 21
+# id: "6425c12c86683e5184ca18f5"
+# marketName: "001"
+# retailPrice: 12
+# vegetableName: "001"
+# wholesalePrice: 12

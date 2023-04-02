@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
 import styled from 'styled-components'
 import { hide, show } from '../../assets'
 import { Bottombar, Navbar } from '../../components'
@@ -109,13 +110,14 @@ const AdminLogin = () => {
         .then(data => {
             localStorage.setItem("access_token", data.access_token);
             localStorage.setItem("refresh_token", data.refresh_token);
-            console.log(data);
+            toast.success(data.message)
+            // console.log(data);
             
             navigate("/dashboard")
         })
-        .catch(err => console.log(err))
+        .catch(err => toast.error(err.response.data.message))
     }
-    
+
 
   return (
     <>

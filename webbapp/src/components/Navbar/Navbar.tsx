@@ -13,6 +13,7 @@ const NavDiv = styled.div`
     padding-left: 10px;
     padding-right: 25px;
     justify-content: space-between;
+    border-bottom: 0.5px solid white;
 `
 const Title = styled.p`
     font-size: 30px;

@@ -2,6 +2,7 @@ from flask import Flask, jsonify
 from flask_restful import Api
 from flask_jwt_extended import JWTManager
 from flask_cors import CORS
+from datetime import timedelta
 
 from db import db
 from blacklist import BLACKLIST
@@ -10,22 +11,30 @@ from blacklist import BLACKLIST
 # from resources.users import AddUser, GetUserByRegNo
 # from resources.invoice import CreateInvoice, GetAllInvoices, ChangeInvoiceStatus
 from resources.admin import NewAdmin, AdminLogin, AdminTokenRefresh, AdminLogout
-from resources.dailyprice import AddDailyPrice, AllDailyPrice, GetData
+from resources.dailyprice import AddDailyPrice, AllDailyPrice, GetData, DailyPrice
 
 app = Flask(__name__)
 CORS(app)
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///data.db"
+# app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///data.db"
 # app.config[
 #     "SQLALCHEMY_DATABASE_URI"
 # ] = "postgresql://postgres:root1234@storedb.cpf4mmsrh7uk.ap-south-1.rds.amazonaws.com:5432"
+
 # app.config[
 #     "SQLALCHEMY_DATABASE_URI"
 # ] = "postgresql://postgres:rootuser@localhost:5432/storedb"
+
+
+app.config[
+    "SQLALCHEMY_DATABASE_URI"
+] = "postgresql://root:root1234@agro-app.cpf4mmsrh7uk.ap-south-1.rds.amazonaws.com:5432"
+
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config["PROPAGATE_EXCEPTIONS"] = True
 app.config["JWT_BLACKLIST_ENABLED"] = True  # enable blacklist feature
 app.config["JWT_BLACKLIST_TOKEN_CHECKS"] = ["access", "refresh"]
 app.config["MAX_CONTENT_LENGTH"] = 16 * 1024 * 1024
+app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(hours=1)
 app.secret_key = "jose"  # could do app.config['JWT_SECRET_KEY'] if we prefer
 api = Api(app)
 
@@ -34,6 +43,8 @@ api = Api(app)
 def create_tables():
     db.create_all()
 
+
+db.init_app(app)
 
 jwt = JWTManager(app)
 
@@ -59,7 +70,10 @@ def check_if_token_in_blacklist(decrypted_token):
 # The original ones may not be in a very pretty format (opinionated)
 @jwt.expired_token_loader
 def expired_token_callback():
-    return jsonify({"message": "The token has expired.", "error": "token_expired"}), 401
+    return (
+        jsonify({"message": "Token expired, login again.", "error": "token_expired"}),
+        401,
+    )
 
 
 @jwt.invalid_token_loader
@@ -111,8 +125,9 @@ api.add_resource(AdminLogin, "/admin/login")
 api.add_resource(AdminLogout, "/admin/logout")
 api.add_resource(AdminTokenRefresh, "/admin/refresh-token")
 
-api.add_resource(AddDailyPrice, "/add-dailyprice")
-api.add_resource(AllDailyPrice, "/all-dailyprice")
+api.add_resource(AddDailyPrice, "/dailyprice/add")
+api.add_resource(DailyPrice, "/dailyprice/edit/<string:id>")
+api.add_resource(AllDailyPrice, "/dailyprice/all")
 api.add_resource(GetData, "/data")
 
 
@@ -132,8 +147,9 @@ def home():
     return "<h1>Home</h1>"
 
 
-db.init_app(app)
-app.run(port=5005, debug=True)
-# if __name__ == "__main__":
-#     db.init_app(app)
-#     app.run(port=5005, debug=True)
+# db.init_app(app)
+# app.run(port=5005, debug=True)
+if __name__ == "__main__":
+
+    # app.run()
+    app.run(port=5005, debug=True)

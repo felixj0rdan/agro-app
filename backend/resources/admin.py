@@ -81,6 +81,7 @@ class AdminLogin(Resource):
             refresh_token = create_refresh_token(admin.id)
 
             return {
+                "message": "Login successful",
                 "access_token": access_token,
                 "refresh_token": refresh_token,
                 "admin_id": admin.id,

@@ -8,11 +8,13 @@ const MarketDiv = styled.div`
     flex-direction: column;
     gap: 30px;
     align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
     /* justify-content: center; */
-    position: absolute;
+    /* position: absolute;
     top: 45%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); */
 `
 
 const MarketTile = styled.div`

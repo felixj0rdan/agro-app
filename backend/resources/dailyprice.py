@@ -46,10 +46,15 @@ class AddDailyPrice(Resource):
 
         admin = AdminsModel.find_by_id(get_jwt_identity())
 
+        if not admin:
+            return {"message": "Admin not found"}, 404
+
         # dailyPrice =
 
-        if DailyPriceModel.find_by_datetime(
-            datetime.datetime.strptime(data["dateTime"], "%Y-%m-%d")
+        if DailyPriceModel.find_by_datetime_market_vegetable(
+            datetime.datetime.strptime(data["dateTime"], "%Y-%m-%d"),
+            data["vegetableName"],
+            data["marketName"],
         ):
 
             return {"message": "Already entered for the given date."}, 400
@@ -57,6 +62,49 @@ class AddDailyPrice(Resource):
         data["adminId"] = admin.id
 
         dailyPrice = DailyPriceModel(**data)
+
+        dailyPrice.save_to_db()
+
+        return {"message": "Success", "dailyPrice": dailyPrice.json()}, 200
+
+
+class DailyPrice(Resource):
+    @jwt_required
+    def put(self, id):
+
+        parser = reqparse.RequestParser()
+
+        parser.add_argument(
+            "retailPrice", type=float, required=True, help="This field cannot be blank."
+        )
+        parser.add_argument(
+            "farmerMarketPrice",
+            type=float,
+            required=True,
+            help="This field cannot be blank.",
+        )
+        parser.add_argument(
+            "wholesalePrice",
+            type=float,
+            required=True,
+            help="This field cannot be blank.",
+        )
+
+        data = parser.parse_args()
+
+        admin = AdminsModel.find_by_id(get_jwt_identity())
+
+        if not admin:
+            return {"message": "Admin not found"}, 404
+
+        dailyPrice = DailyPriceModel.find_by_id(id)
+
+        if not dailyPrice:
+            return {"message": "Daily price not found"}, 404
+
+        dailyPrice.farmerMarketPrice = data["farmerMarketPrice"]
+        dailyPrice.retailPrice = data["retailPrice"]
+        dailyPrice.wholesalePrice = data["wholesalePrice"]
 
         dailyPrice.save_to_db()
 

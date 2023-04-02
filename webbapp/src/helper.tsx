@@ -3,7 +3,7 @@ import Papa from 'papaparse';
 
 // const URL = "http://127.0.0.1:5005/"
 
-const URL = "https://46a8-115-96-212-47.in.ngrok.io"
+const URL = "https://agro-appbackend-production.up.railway.app/"
 
 export const Login = async (data : any) => {
     let res = await axios.post(`${URL}admin/login`, data)
@@ -11,7 +11,16 @@ export const Login = async (data : any) => {
 }
 
 export const AddDailyPrice = async (data : any) => {
-    let res = await axios.post(`${URL}add-dailyprice`, data, {
+    let res = await axios.post(`${URL}dailyprice/add`, data, {
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem("access_token")}`
+        }
+    })
+    return res.data;
+}
+
+export const EditDailyPrice = async (data : any, id: string) => {
+    let res = await axios.put(`${URL}dailyprice/edit/${id}`, data, {
         headers: {
             Authorization: `Bearer ${localStorage.getItem("access_token")}`
         }
@@ -20,15 +29,13 @@ export const AddDailyPrice = async (data : any) => {
 }
 
 export const GetDailyPrice = async () => {
-    let response = await axios.get(`${URL}all-dailyprice`)
+    let response = await axios.get(`${URL}dailyprice/all`)
     return response.data.dailyprices;
 }
 
 export const GetData = async () => {
     let response = await axios.get(`${URL}data`)
     return parseCSV(response.data);
-    // const parsedData = Papa.parse(response.data, { header: true }).data;
-    // return parsedData;
 }
 
 function parseCSV(file: any) {

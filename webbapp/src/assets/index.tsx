@@ -38,12 +38,19 @@ export interface MarketType {
     [key:string]:string,
     english: string,
     tamil: string,
+    city: string
+}
+
+export interface PriceType {
+    [key:string]:string,
+    english: string,
+    tamil: string,
 }
 
 const Vegetables: VegetableType[] = [
     {
         id: "001",
-        english: "Tomoto",
+        english: "Tomato",
         tamil: "தக்காளி",
         img: tomatoI
     },
@@ -109,26 +116,31 @@ export const markets: MarketType[] = [
         id: "001",
         english: "Vellore Tolgate",
         tamil: "வேலூர் டோல்கேட்",
+        city: "Vellore"
     },
     {
         id: "002",
         english: "Katpadi",
         tamil: "காட்பாடி",
+        city: "Vellore"
     },
     {
         id: "003",
         english: "Gudiyatam",
         tamil: "குடியாத்தம்",
+        city: "Vellore"
     },
     {
         id: "004",
         english: "Kagithapattrai",
         tamil: "காகிதப்பட்டறை",
+        city: "Vellore"
     },
     {
         id: "005",
         english: "Chennai Koyambedu",
         tamil: "சென்னை கோயம்பேடு",
+        city: "Chennai"
     },
     
 ]
@@ -160,6 +172,26 @@ export const userTypes : UserType[] = [
         tamil: "மொத்த வியாபாரி"
     }
 ] 
+
+
+export const priceType: PriceType[] = [
+    {
+        id: "001",
+        english: "Farmer's Price",
+        tamil: "உழவர் விலை"
+    },
+    {
+        id: "002",
+        english: "Retail Price",
+        tamil: "சில்லறை விலை"
+    },
+    {
+        id: "003",
+        english: "Wholesale Price",
+        tamil: "மொத்த விற். விலை"
+    },
+    
+]
 
 
 
