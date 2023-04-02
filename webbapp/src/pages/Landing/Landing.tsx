@@ -86,7 +86,7 @@ const Landing = () => {
                     { userType !== undefined && market === undefined && vegetable === undefined && <MarketTiles language = {language} setUserType={setUserType} setMarket={setMarket} />}
                     { userType !== undefined && market !== undefined && vegetable === undefined && <VegetablesTiles setMartket={setMarket} language = {language} setVegetable={setVegetable} />}
                 {/* </div> */}
-                {userType !== undefined && market !== undefined && vegetable !== undefined && <DailyPrice setVegetable={setVegetable} vegetable={vegetable} market={market} language={language} vegetableData={data.filter(d => (d.marketName === market?.id && d.vegetableName == vegetable.id) )} /> }
+                {userType !== undefined && market !== undefined && vegetable !== undefined && <DailyPrice setVegetable={setVegetable} vegetable={vegetable} market={market} language={language} vegetableData={ data.filter(d => (d.marketName === market?.id && d.vegetableName == vegetable.id) )} /> }
             </LandingDiv>
         <Bottombar navigate={navigate} />
     </>

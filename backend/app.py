@@ -15,7 +15,7 @@ from resources.dailyprice import AddDailyPrice, AllDailyPrice, GetData, DailyPri
 
 app = Flask(__name__)
 CORS(app)
-# app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///data.db"
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///data.db"
 # app.config[
 #     "SQLALCHEMY_DATABASE_URI"
 # ] = "postgresql://postgres:root1234@storedb.cpf4mmsrh7uk.ap-south-1.rds.amazonaws.com:5432"
@@ -25,9 +25,9 @@ CORS(app)
 # ] = "postgresql://postgres:rootuser@localhost:5432/storedb"
 
 
-app.config[
-    "SQLALCHEMY_DATABASE_URI"
-] = "postgresql://root:root1234@agro-app.cpf4mmsrh7uk.ap-south-1.rds.amazonaws.com:5432"
+# app.config[
+#     "SQLALCHEMY_DATABASE_URI"
+# ] = "postgresql://postgres:root1234@database-1.cpf4mmsrh7uk.ap-south-1.rds.amazonaws.com:5432"
 
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config["PROPAGATE_EXCEPTIONS"] = True
@@ -153,3 +153,6 @@ if __name__ == "__main__":
 
     # app.run()
     app.run(port=5005, debug=True)
+
+
+# agro-appbackend-production.up.railway.app
