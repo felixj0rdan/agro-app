@@ -16,7 +16,7 @@ from resources.rating import Rating
 
 app = Flask(__name__)
 CORS(app)
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///data.db"
+# app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///data.db"
 # app.config[
 #     "SQLALCHEMY_DATABASE_URI"
 # ] = "postgresql://postgres:root1234@storedb.cpf4mmsrh7uk.ap-south-1.rds.amazonaws.com:5432"
@@ -26,9 +26,9 @@ app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///data.db"
 # ] = "postgresql://postgres:rootuser@localhost:5432/storedb"
 
 
-# app.config[
-#     "SQLALCHEMY_DATABASE_URI"
-# ] = "postgresql://postgres:root1234@database-1.cpf4mmsrh7uk.ap-south-1.rds.amazonaws.com:5432"
+app.config[
+    "SQLALCHEMY_DATABASE_URI"
+] = "postgresql://postgres:root1234@database-1.cpf4mmsrh7uk.ap-south-1.rds.amazonaws.com:5432"
 
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config["PROPAGATE_EXCEPTIONS"] = True

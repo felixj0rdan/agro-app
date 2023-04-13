@@ -7,6 +7,9 @@ import hide from "./icons/hide.png";
 import left from "./icons/left.png";
 import right from "./icons/right.png";
 import back from "./icons/back.png"
+import star from "./icons/star.png"
+import starGold from "./icons/star-gold.png"
+
 
 
 import tomatoI from "./icons/tomato.png";
@@ -205,5 +208,7 @@ export {
     hide,
     left,
     right,
-    back
+    back,
+    star,
+    starGold,
 }

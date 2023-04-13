@@ -50,7 +50,7 @@ const MarketTiles = ({setMarket, language, setUserType} : any) => {
 
   return (
     <MarketDiv>
-        <BackButton onClick={() => setUserType(undefined)} >
+        <BackButton onClick={() => {localStorage.removeItem("user-type");setUserType(undefined)}} >
             <img src={back} height="35px" alt="" />
         </BackButton>
         {

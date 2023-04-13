@@ -66,7 +66,7 @@ const UserTypeTiles = ({setUserType, language} : any) => {
 
         {
             userTypes.map((userT, index) =>
-            <UserCard key={index} onClick={() => setUserType(userT.english)} >
+            <UserCard key={index} onClick={() => {setUserType(userT.english); localStorage.setItem("user-type", userT.english)}} >
                 <img height={"75px"} src={userT.img} />
                 <UserType size={"20px"} >{userT[language]}</UserType>
             </UserCard> )

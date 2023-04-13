@@ -31,6 +31,7 @@ const MainDiv = styled.div`
     /* justify-content: center; */
     align-items: center;
     position: absolute;
+    /* margin-top: 30px; */
     /* gap: 50px; */
     top: 35%;
     left: 50%;
@@ -155,7 +156,7 @@ const DailyPriceForm = ({ vegetableData, language, vegetable, market, setVegetab
 
     useEffect(() => {
 
-        let dpData = vegetableData.filter(data => data.dateTime === date)[0]
+        let dpData = vegetableData?.filter(data => data.dateTime === date)[0]
         // setDailyPrice(dpData)
         console.log(dpData);
         

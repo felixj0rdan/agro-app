@@ -106,8 +106,6 @@ const Details = styled.div`
     justify-content: center;
     gap: 5px;
     margin: 10px;
-
-    
 `
 
 const MarketTitle = styled.p`

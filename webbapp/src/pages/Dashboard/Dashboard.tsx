@@ -46,11 +46,11 @@ const Dashboard = () => {
         <Navbar language={language} setLanguage={setLanguage} />
         <DashMain>
             
-            { market === undefined && vegetable === undefined && <MarketTiles language = {language} setMarket={setMarket} />}
+            { market === undefined && vegetable === undefined && <MarketTiles setUserType={() => null} language = {language} setMarket={setMarket} />}
             { market !== undefined && vegetable === undefined && <VegetablesTiles setMartket={setMarket} language = {language} setVegetable={setVegetable} />}
-            { market !== undefined && vegetable !== undefined && <DailyPriceForm setVegetable={setVegetable} language={language} vegetableData={data.filter(d => (d.marketName === market?.id && d.vegetableName == vegetable.id) )} market={market} vegetable={vegetable} /> }
+            { market !== undefined && vegetable !== undefined && <DailyPriceForm setVegetable={setVegetable} language={language} vegetableData={data && data?.filter(d => (d.marketName === market?.id && d.vegetableName == vegetable.id) )} market={market} vegetable={vegetable} /> }
         </DashMain>
-        <Bottombar navigate={navigate} />
+        <Bottombar isAdminPage={true} navigate={navigate} />
         </>
     )
 }

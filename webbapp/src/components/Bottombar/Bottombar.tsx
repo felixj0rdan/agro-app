@@ -25,6 +25,16 @@ const Button = styled.button`
         outline: none;
     }
 `
+const RatingBtn = styled.button`
+    position: absolute;
+    right: 0;
+    margin-right: 10px;
+    border: 1px solid white;
+    background-color: skyblue;
+    color: white;
+    border-radius: 3px;
+    padding: 5px;
+`
 
 const Bottombar = ({navigate, isAdminPage} : any) => {
 
@@ -47,6 +57,7 @@ const Bottombar = ({navigate, isAdminPage} : any) => {
         <Button onClick={Goto} >
             { isAdminPage ? "Go Back" : token ? "Logout" :"Admin"}
         </Button>
+        <RatingBtn onClick={() => isAdminPage ? navigate("/rating-dashboard") : navigate("/rating")} >{isAdminPage ? "Ratings" : "Rate Us"}</RatingBtn>
     </MainDiv>
   )
 }
